@@ -110,7 +110,7 @@ function Billing() {
 
     try {
         const response = await axios.get(
-            `http://13.233.114.161:3000/quantity?medicinename=${medicinename}&dosage=${dosage}`
+            `http://api.5ytechno.com/quantity?medicinename=${medicinename}&dosage=${dosage}`
         );
         const availableQuantity = response.data.availableQuantity;
 
@@ -175,7 +175,7 @@ function Billing() {
     try {
         const { medicinename, dosage } = extractMedicineInfo(selectedSuggestion);
         const mrpResponse = await axios.get(
-            `http://13.233.114.161:3000/getMRP?medicinename=${medicinename}&dosage=${dosage}`
+            `http://api.5ytechno.com/getMRP?medicinename=${medicinename}&dosage=${dosage}`
         );
         const mrp = mrpResponse.data.mrp;
         console.log("mrp", mrp);
@@ -200,7 +200,7 @@ function Billing() {
 
     try {
         const response = await axios.get(
-            `http://13.233.114.161:3000/suggestions?partialName=${inputValue}`
+            `http://api.5ytechno.com/suggestions?partialName=${inputValue}`
         );
         const fetchedSuggestions = response.data.suggestions;
         setSuggestions(fetchedSuggestions);
@@ -227,7 +227,7 @@ const handleKeyPress = async (event, rowIndex, colIndex, id) => {
       if (event.target.id === `medicinename${id}`) {
         try {
           const response = await axios.get(
-            `http://13.233.114.161:3000/allstock?medicinename=${medicinename}&dosage=${dosage}`
+            `http://api.5ytechno.com/allstock?medicinename=${medicinename}&dosage=${dosage}`
           );
           const expired = response.data.expired;
 
@@ -434,7 +434,7 @@ const clearRow = (id) => {
 
     try {
       const response = await axios.post(
-        "http://13.233.114.161:3000/billing",
+        "http://api.5ytechno.com/billing",
         billingData
       );
       const generatedInvoiceNumber = response.data.invoicenumber;
